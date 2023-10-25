@@ -1,0 +1,125 @@
+﻿@using WebAppFramework.Models
+
+@model ResultsModel
+
+@{
+    string resultsJson = Model.ResultsJson; // Get the JSON data from the model
+    string contextJson = Model.ContextJson;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Search Results</title>
+  <link rel="stylesheet" href="~/css/Results.css" />
+</head>
+<body>
+  <div class="container">
+@*    <h1>Results</h1>
+        <p>Text: @Model.Text</p>
+        <p>Selected Option: @Model.SelectedOption</p>*@ 
+    <a href="@Url.Action("Index", "Home")" class="site-logo-link">
+        <h2>The Office Script Search</h2>
+      </a>
+    <form class="search-bar" id="searchForm" method="post" action="/Home/SubmitForm">
+      <input type="text" id="searchInput" name="Text" class="search-input" required data-text="@Html.Raw(Model.Text)"> 
+      <select id="dropdown" name="SelectedOption" class="search-dropdown" data-selected-option="@Model.SelectedOption">
+          <option value="All Speakers">All Speakers</option>
+          <option value="Michael">Michael</option>
+          <option value="Dwight">Dwight</option>
+          <option value="Jim">Jim</option>
+          <option value="Pam">Pam</option>
+          <option value="Andy">Andy</option>
+          <option value="Kevin">Kevin</option>
+          <option value="Angela">Angela</option>
+          <option value="Oscar">Oscar</option>
+          <option value="Erin">Erin</option>
+          <option value="Ryan">Ryan</option>
+          <option value="Darryl">Darryl</option>
+          <option value="Phyllis">Phyllis</option>
+          <option value="Kelly">Kelly</option>
+          <option value="Jan">Jan</option>
+          <option value="Toby">Toby</option>
+          <option value="Stanley">Stanley</option>
+          <option value="Meredith">Meredith</option>
+          <option value="Holly">Holly</option>
+          <option value="Nellie">Nellie</option>
+          <option value="Creed">Creed</option>
+          <option value="Gabe">Gabe</option>
+          <option value="Robert">Robert</option>
+          <option value="David">David</option>
+          <option value="Karen">Karen</option>
+          <option value="Clark">Clark</option>
+          <option value="Roy">Roy</option>
+          <option value="Charles">Charles</option>
+          <option value="Pete">Pete</option>
+          <option value="Jo">Jo</option>
+          <option value="Deangelo">Deangelo</option>
+          <option value="David Wallace">David Wallace</option>
+          <option value="Katy">Katy</option>
+          <option value="Carol">Carol</option>
+          <option value="Donna">Donna</option>
+          <option value="DeAngelo">DeAngelo</option>
+          <option value="Todd Packer">Todd Packer</option>
+          <option value="Val">Val</option>
+          <option value="Danny">Danny</option>
+          <option value="Josh">Josh</option>
+          <option value="More Options...">More Options...</option>
+        </select>
+      <button type="submit" class="search-button" id="searchButton">Search</button>
+    </form>
+    <div class="inner-container">
+    <div class="sidebar">
+        <h2 id="selected-title">Episode Info</h2>
+        <div id="selected-details">
+            <p>Season: <span id="selected-season"></span></p>
+            <p>Episode: <span id="selected-episode"></span></p>
+            <p>Scene: <span id="selected-scene"></span></p>
+            <p>Character: <span id="selected-character"></span></p>
+            <p>Disk Number: <span id="selected-disk-number"></span></p>
+            <p>Deleted Scene: <span id="selected-deleted"></span></p>
+        </div>
+    </div> 
+    <div class="result-list-container">
+        <div class="result-list-wrapper">
+            <ul class="result-list">
+            </ul>
+        </div>
+    </div>
+  </div>
+  <div class="lower-container">
+    <h2>Script in Context</h2>
+    <div class="lower-container-wrapper">
+      <div class="lower-container-buttons">
+        <button id="lower-button-up">&#9650;</button>
+        <button id="lower-button-down">&#9660;</button>
+      </div>
+    <div class="lower-container-script">
+        <div id="current-id" class="hidden"></div>
+      <table>
+        <tr>
+          <td id="previous-speaker"></td>
+          <td id="previous-line"></td>
+        </tr>
+        <tr>
+          <td id="current-speaker"></td>
+          <td id="current-line"></td>
+        </tr>
+        <tr>
+          <td id="next-speaker"></td>
+          <td id="next-line"></td>
+        </tr>
+      </table>
+    </div>  
+  </div>
+  </div>
+  </div>
+  <div class="bottom-container"></div>
+  <footer>
+    <p> &copy; Will Garvey Productions 2023</p>
+  </footer>
+  <script src="~/js/Results.js"></script>
+  <script src="~/js/CharacterName.js"></script>
+
+</body> 
+</html>
